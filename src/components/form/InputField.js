@@ -13,7 +13,7 @@ import colors from '../../styles/colors';
 
 export default class InputField extends Component {
     render() {
-        const { labelText, labelFontSize, labelColor, inputColor, inputType } = Object.assign({
+        const { labelText, labelFontSize, labelColor, inputColor, inputType, onChange } = Object.assign({
             labelFontSize: 14,
             labelColor: colors.light,
             inputColor: colors.light,
@@ -30,6 +30,7 @@ export default class InputField extends Component {
                     keyboardType={inputType === 'email' ? 'email-address' : 'default'}
                     secureTextEntry={inputType === 'password'}
                     underlineColorAndroid="transparent"
+                    onChangeText={onChange}
                 />
             </View>
         )
@@ -42,6 +43,7 @@ InputField.propTypes = {
     labelColor: PropTypes.string,
     inputColor: PropTypes.string,
     inputType: PropTypes.string,
+    onChange: PropTypes.func
 };
 
 const styles = StyleSheet.create({

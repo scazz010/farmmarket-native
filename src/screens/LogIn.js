@@ -4,26 +4,47 @@ import {
     KeyboardAvoidingView,
     ScrollView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import colors from '../styles/colors';
 import InputField from "../components/form/InputField";
+import NextButton from '../components/buttons/NextButton';
 import Notification from "../components/Notification";
+import validateEmail from "../validators/EmailValidator";
 
 export default class LogIn extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            formValid: false
-        }
+            formValid: true,
+            emailValid: false
+        };
 
         this.onCloseNotification = this.onCloseNotification.bind(this);
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onNext = this.onNext.bind(this);
     }
 
     onCloseNotification() {
         this.setState({formValid: true});
     }
+
+    onNext() {
+        this.setState({
+            formValid: this.state.emailValid
+        });
+    }
+
+    onEmailChange(email) {
+        this.setState({emailValid: validateEmail(email)});
+    }
+
+    // validateEmail(email) {
+    //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //     return re.test(String(email).toLowerCase());
+    // }
+
+
 
     render() {
         const { formValid } = this.state;
@@ -35,9 +56,13 @@ export default class LogIn extends Component {
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.logInHeader}>Log In</Text>
                         
-                        <InputField labelText="EMAIL ADDRESS:" inputType="email"/>
+                        <InputField labelText="EMAIL ADDRESS:" inputType="email" onChange={this.onEmailChange}/>
                         <InputField labelText="PASSWORD:" inputType="password"/>
                     </ScrollView>
+
+                    <View style={styles.nextButton}>
+                        <NextButton onPress={this.onNext}/>
+                    </View>
 
                     <View>
                         <Notification
@@ -72,5 +97,10 @@ const styles = StyleSheet.create({
         color: colors.light,
         fontWeight: '300',
         marginBottom: 40
+    },
+    nextButton: {
+        alignItems: 'flex-end',
+        right: 20,
+        bottom: 10,
     }
 });
