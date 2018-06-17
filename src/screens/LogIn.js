@@ -10,6 +10,7 @@ import InputField from "../components/form/InputField";
 import NextButton from '../components/buttons/NextButton';
 import Notification from "../components/Notification";
 import validateEmail from "../validators/EmailValidator";
+import LoadingModal from "../components/LoadingModal";
 
 export default class LogIn extends Component {
     constructor(props) {
@@ -19,7 +20,8 @@ export default class LogIn extends Component {
             formValid: true,
             emailValid: false,
             passwordValid: false,
-            email: ''
+            email: '',
+            isLoading: false,
         };
 
         this.onCloseNotification = this.onCloseNotification.bind(this);
@@ -34,9 +36,13 @@ export default class LogIn extends Component {
     }
 
     onNext() {
-        this.setState({
-            formValid: this.state.email === 'sam@sam.com'
-        });
+        this.setState({ isLoading: true});
+        setTimeout(() => {
+            this.setState({
+                formValid: this.state.email === 'sam@sam.com',
+                isLoading: false
+            });
+        }, 2000);
     }
 
     onEmailChange(email) {
@@ -56,7 +62,7 @@ export default class LogIn extends Component {
     }
 
     render() {
-        const { formValid } = this.state;
+        const { formValid, isLoading } = this.state;
         const showNotification = !formValid;
 
         return (
@@ -81,6 +87,7 @@ export default class LogIn extends Component {
                             isShowing={showNotification}/>
                     </View>
                 </View>
+                <LoadingModal isVisible={isLoading}/>
             </KeyboardAvoidingView>
         );
     }
