@@ -17,11 +17,15 @@ export default class LogIn extends Component {
 
         this.state = {
             formValid: true,
-            emailValid: false
+            emailValid: false,
+            passwordValid: false,
+            email: ''
         };
 
         this.onCloseNotification = this.onCloseNotification.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.nextButtonDisabledState = this.nextButtonDisabledState.bind(this);
         this.onNext = this.onNext.bind(this);
     }
 
@@ -31,20 +35,25 @@ export default class LogIn extends Component {
 
     onNext() {
         this.setState({
-            formValid: this.state.emailValid
+            formValid: this.state.email === 'sam@sam.com'
         });
     }
 
     onEmailChange(email) {
-        this.setState({emailValid: validateEmail(email)});
+        this.setState({
+            email: email,
+            emailValid: validateEmail(email)
+        });
     }
 
-    // validateEmail(email) {
-    //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //     return re.test(String(email).toLowerCase());
-    // }
+    onPasswordChange(password) {
+        this.setState({passwordValid: password.length > 4});
+    }
 
-
+    nextButtonDisabledState() {
+        const { emailValid , passwordValid } = this.state;
+        return !(emailValid && passwordValid);
+    }
 
     render() {
         const { formValid } = this.state;
@@ -57,11 +66,11 @@ export default class LogIn extends Component {
                         <Text style={styles.logInHeader}>Log In</Text>
                         
                         <InputField labelText="EMAIL ADDRESS:" inputType="email" onChange={this.onEmailChange}/>
-                        <InputField labelText="PASSWORD:" inputType="password"/>
+                        <InputField labelText="PASSWORD:" inputType="password" onChange={this.onPasswordChange}/>
                     </ScrollView>
 
                     <View style={styles.nextButton}>
-                        <NextButton onPress={this.onNext}/>
+                        <NextButton onPress={this.onNext} disabled={this.nextButtonDisabledState()}/>
                     </View>
 
                     <View>
@@ -84,11 +93,12 @@ const styles = StyleSheet.create({
     },
 
     scrollViewWrapper: {
-      marginTop: 30,
+      marginTop: 20,
         flex: 1
     },
     scrollView: {
-        padding: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
         flex: 1
     },
 
@@ -96,7 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 34,
         color: colors.light,
         fontWeight: '300',
-        marginBottom: 40
+        marginBottom: 30
     },
     nextButton: {
         alignItems: 'flex-end',

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     labelText: {
         fontWeight: '700',
-        marginBottom: 10
+        marginBottom: 0
     },
     inputField: {
         borderBottomWidth: 1,

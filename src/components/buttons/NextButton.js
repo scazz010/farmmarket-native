@@ -13,10 +13,15 @@ import colors from '../../styles/colors';
 
 export default class NextButton extends Component {
     render() {
-        const { onPress } = this.props;
+        const { onPress, disabled } = Object.assign({
+            disabled: false,
+            ...this.props,
+        });
+
+        const opacityStyle = { backgroundColor: disabled ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)' };
 
         return (
-            <TouchableHighlight style={styles.button} onPress={onPress} >
+            <TouchableHighlight style={[opacityStyle, styles.button]} onPress={onPress} disabled={disabled}>
                 <Icon size={32} name="angle-right" color={colors.green} style={styles.icon} />
             </TouchableHighlight>
         );
@@ -24,7 +29,8 @@ export default class NextButton extends Component {
 }
 
 NextButton.propTypes = {
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
 };
 
 const styles = StyleSheet.create({
@@ -34,7 +40,6 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: 50,
         height: 50,
-        backgroundColor: 'rgba(255,255,255,0.2)'
     },
     icon: {
         marginRight: -4,

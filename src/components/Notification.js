@@ -19,7 +19,7 @@ export default class Notification extends Component {
         super(props);
 
         this.state = {
-            positionValue: new Animated.Value(60)
+            positionValue: new Animated.Value(-60)
         };
 
         this.closeNotification = this.closeNotification.bind(this);
@@ -30,7 +30,7 @@ export default class Notification extends Component {
 
         Animated.timing(
             positionValue,
-            { toValue: value, duration: 400, velocity: 3, tension: 2, friction: 8, easing: Easing.easeInEaseOut }
+            { toValue: value, duration: 300, velocity: 3, tension: 2, friction: 8, easing: Easing.easeInEaseOut }
         ).start();
     }
 
@@ -43,10 +43,10 @@ export default class Notification extends Component {
         const { positionValue } = this.state;
         const typeColor = type === 'error' ? colors.red : colors.dark;
 
-        isShowing ? this.animateNotification(0) : this.animateNotification(60);
+        isShowing ? this.animateNotification(0) : this.animateNotification(-60);
 
         return (
-            <Animated.View style={[{ transform: [{translateY: positionValue}]}, styles.wrapper]}>
+            <Animated.View style={[{ marginBottom: positionValue }, styles.wrapper]}>
                 <View style={styles.notificationContent}>
                     <Text style={[{color: typeColor}, styles.notificationType]}>{type}</Text>
                     <Text style={styles.notificationText}>{text}</Text>
