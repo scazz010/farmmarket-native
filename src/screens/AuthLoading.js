@@ -3,7 +3,7 @@ import {
     View,
 } from 'react-native';
 
-import LoadingModal from '../components/loading/LoaderSpash';
+import LoadingIcon from '../components/loading/LoadingIcon';
 
 export default class AuthLoadingScreen extends React.Component {
     constructor() {
@@ -34,7 +34,7 @@ export default class AuthLoadingScreen extends React.Component {
                 height: '100%',
                 top: 0,
                 left: 0}}>
-                <LoadingModal />
+                <LoadingIcon />
             </View>
         );
     }

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import {
     StyleSheet,
-    Text,
-    Modal,
     View,
     Image
 } from 'react-native';
 
-export default class LoaderSpash extends Component {
+export default class LoadingIcon extends Component {
     render() {
         return (
             <View style={styles.loadingContainer}>
@@ -21,10 +18,16 @@ export default class LoaderSpash extends Component {
 
 
 const styles = StyleSheet.create({
+    loadingContainer: {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        marginLeft: -45,
+        marginTop: -45
+    },
     loadingImage: {
         width: 90,
         height: 90,
         borderRadius: 15,
-
     }
 });

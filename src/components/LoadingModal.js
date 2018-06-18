@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+import LoadingIcon from './loading/LoadingIcon';
 
 import {
     StyleSheet,
-    Text,
     Modal,
-    View,
-    Image
+    View
 } from 'react-native';
-
-import colors from '../styles/colors';
 
 export default class LoadingModal extends Component {
     render() {
@@ -24,9 +21,7 @@ export default class LoadingModal extends Component {
                 onRequestClose={() => {}}
             >
                 <View style={styles.container}>
-                  <View style={styles.loadingContainer}>
-                    <Image style={styles.loadingImage} source={require('../assets/loader.png')} />
-                  </View>
+                  <LoadingIcon />
                 </View>
             </Modal>
         )
@@ -35,7 +30,6 @@ export default class LoadingModal extends Component {
 
 LoadingModal.propType = {
   visible: PropTypes.bool.isRequired,
-
 };
 
 const styles = StyleSheet.create({
@@ -48,18 +42,9 @@ const styles = StyleSheet.create({
        top: 0,
        left: 0
    },
-    loadingContainer: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        marginLeft: -45,
-        marginTop: -45
-
-    },
     loadingImage: {
        width: 90,
         height: 90,
         borderRadius: 15,
-
     }
 });

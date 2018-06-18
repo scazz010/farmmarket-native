@@ -4,8 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
     StyleSheet,
-    Text,
-    View,
     TouchableHighlight
 } from 'react-native';
 

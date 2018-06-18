@@ -38,10 +38,14 @@ export default class LogIn extends Component {
     onNext() {
         this.setState({ isLoading: true});
         setTimeout(() => {
-            this.setState({
-                formValid: this.state.email === 'sam@sam.com',
-                isLoading: false
-            });
+            if (this.state.email === 'sam@sam.com') {
+                this.props.navigation.navigate('App');
+            } else {
+                this.setState({
+                    formValid: false,
+                    isLoading: false
+                });
+            }
         }, 2000);
     }
 
