@@ -21,6 +21,7 @@ export default class LoadingModal extends Component {
                 visible={ isVisible }
                 transparent={true}
                 animationType="fade"
+                onRequestClose={() => {}}
             >
                 <View style={styles.container}>
                   <View style={styles.loadingContainer}>

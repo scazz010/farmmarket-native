@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
 
     scrollViewWrapper: {
-      marginTop: 20,
+      marginTop: 45,
         flex: 1
     },
     scrollView: {
