@@ -7,7 +7,8 @@ import {
   View,
   TouchableOpacity,
   Easing,
-  Animated
+  Animated,
+  ScrollView
 } from "react-native";
 
 import Icon from "react-native-vector-icons/Ionicons";
@@ -15,6 +16,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../styles/colors";
 
 export default class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>

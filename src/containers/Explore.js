@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 import NavActionButton from "../components/buttons/NavActionButton";
 import SearchBar from "../components/SearchBar";
+import Categories from "../components/explore/Categories";
+
+import categories from "../data/categories";
 
 export default class Explore extends Component {
   static navigationOptions = {
@@ -15,10 +18,12 @@ export default class Explore extends Component {
 
   render() {
     return (
-      <View style={styles.conatiner}>
+      <View style={styles.container}>
         <SearchBar />
 
         <Text>Explore tab</Text>
+        <Text>Hello</Text>
+        <Categories categories={categories} />
       </View>
     );
   }
@@ -26,6 +31,6 @@ export default class Explore extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    paddingTop: 80
   }
 });
