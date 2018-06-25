@@ -6,19 +6,24 @@ const categories = [
     name: "Farms",
     screenType: "FarmScreen",
     backgroundColor: "#faf7d6",
-    photo: require("./photos/eggs.jpg"),
-    textColor: colors.light
+    textColor: colors.light,
+    photo: require("./photos/farm_small.jpg")
   },
   {
     id: 2,
     name: "Fruit & Veg",
     backgroundColor: "#fabf1b",
-    screenType: "FarmScreen"
+    screenType: "FarmScreen",
+    textColor: "#fff",
+    photo: require("./photos/fruitAndVeg_small.jpg")
   },
   {
     id: 3,
     name: "Animal by products",
-    screenType: "FarmScreen"
+    screenType: "FarmScreen",
+    photo: require("./photos/eggs_small.jpg"),
+    backgroundColor: "#fafaaa",
+    textColor: colors.light
   },
   {
     id: 4,

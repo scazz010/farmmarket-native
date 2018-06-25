@@ -6,9 +6,6 @@ import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 import NavActionButton from "../components/buttons/NavActionButton";
 import { SearchBar } from "react-native-elements";
-import Categories from "../components/explore/Categories";
-
-import categories from "../data/exploreListing";
 
 import ExporeTabNavigator from "../navigators/ExploreTabNavigator";
 
@@ -31,7 +28,6 @@ export default class Explore extends Component {
         <View style={styles.wrapper}>
           <View style={styles.exploreView}>
             <Text style={styles.heading}>Explore FarmMarket</Text>
-            <Categories categories={categories} />
           </View>
           <View style={{ flex: 1 }}>
             <ExporeTabNavigator />
