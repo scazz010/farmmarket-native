@@ -1,5 +1,5 @@
 import { createTabNavigator } from "react-navigation";
-import transparentHeaderStyles from "../styles/navigation";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import ExploreContainer from "../containers/Explore";
 import HistoryContainer from "../containers/History";
@@ -7,13 +7,50 @@ import ProfileContainer from "../containers/Profile";
 
 import FarmScreen from "../screens/explore/Farms";
 
-export default createTabNavigator(
-  {
-    Farms: { screen: FarmScreen },
-    History: { screen: HistoryContainer }
-  },
-  {
-    initialRouteName: "Farms",
-    shifting: true
+import listings from "../data/exploreListing";
+
+import RoundedTabBar from "./components/RoundedTabBar";
+
+import {
+  createNavigator,
+  createNavigationContainer,
+  TabRouter
+} from "react-navigation";
+
+const getScreen = screenType => {
+  switch (screenType) {
+    case "FarmScreen":
+      return FarmScreen;
   }
+};
+
+const buildRouterConfig = function() {
+  let router = {};
+
+  listings.map(route => {
+    const screen = getScreen(route.screenType);
+    if (screen) {
+      router[route.name] = {
+        screen: screen,
+        backgroundColor: route.backgroundColor,
+        navigationOptions: ({ navigation }) => ({
+          backgroundImage: route.photo,
+          backgroundColor: route.backgroundColor,
+          textColor: route.textColor
+        })
+      };
+    }
+  });
+
+  return router;
+};
+
+const ExploreTabRouter = TabRouter(buildRouterConfig(), {
+  tabBarOptions: {}
+});
+
+const CustomTabs = createNavigationContainer(
+  createNavigator(RoundedTabBar, ExploreTabRouter, {})
 );
+
+export default CustomTabs;

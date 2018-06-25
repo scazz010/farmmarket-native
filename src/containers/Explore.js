@@ -5,10 +5,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 import NavActionButton from "../components/buttons/NavActionButton";
-import SearchBar from "../components/SearchBar";
+import { SearchBar } from "react-native-elements";
 import Categories from "../components/explore/Categories";
 
-import categories from "../data/categories";
+import categories from "../data/exploreListing";
 
 import ExporeTabNavigator from "../navigators/ExploreTabNavigator";
 
@@ -20,14 +20,22 @@ export default class Explore extends Component {
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <SearchBar />
-        <View style={styles.exploreView}>
-          <Text style={styles.heading}>Explore FarmMarket</Text>
-          <Categories categories={categories} />
-        </View>
-        <View style={{ flex: 1 }}>
-          <ExporeTabNavigator />
+      <View style={{ flex: 1 }}>
+        <SearchBar
+          lightTheme
+          showLoading
+          platform="android"
+          cancelIcon={{ type: "font-awesome", name: "chevron-left" }}
+          placeholder="Search"
+        />
+        <View style={styles.wrapper}>
+          <View style={styles.exploreView}>
+            <Text style={styles.heading}>Explore FarmMarket</Text>
+            <Categories categories={categories} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <ExporeTabNavigator />
+          </View>
         </View>
       </View>
     );
@@ -42,7 +50,7 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   exploreView: {
-    paddingTop: 80,
+    paddingTop: 20,
     paddingBottom: 20
   },
   heading: {
