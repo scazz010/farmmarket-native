@@ -1,35 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Easing,
-  Animated,
-  TouchableHighlight,
-  ScrollView
-} from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 import CategoryCard from "./CategoryCard";
 
-import Icon from "react-native-vector-icons/Ionicons";
-import colors from "../../styles/colors";
-
-export default class SearchBar extends Component {
+export default class Categories extends Component {
   get Categories() {
     const { categories } = this.props;
-    return categories.map(category => {
-      return <CategoryCard name={category.name} />;
+    return categories.map((category, index) => {
+      return <CategoryCard name={category.name} isFirstElement={index === 0} />;
     });
   }
 
   render() {
-    return <ScrollView horizontal={true}>{this.Categories}</ScrollView>;
+    return (
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {this.Categories}
+      </ScrollView>
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    display: "flex",
+    justifyContent: "space-between"
+  }
 });

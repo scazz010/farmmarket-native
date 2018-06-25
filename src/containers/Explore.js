@@ -10,6 +10,8 @@ import Categories from "../components/explore/Categories";
 
 import categories from "../data/categories";
 
+import ExporeTabNavigator from "../navigators/ExploreTabNavigator";
+
 export default class Explore extends Component {
   static navigationOptions = {
     title: "Explore",
@@ -18,19 +20,40 @@ export default class Explore extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.wrapper}>
         <SearchBar />
-
-        <Text>Explore tab</Text>
-        <Text>Hello</Text>
-        <Categories categories={categories} />
+        <View style={styles.exploreView}>
+          <Text style={styles.heading}>Explore FarmMarket</Text>
+          <Categories categories={categories} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <ExporeTabNavigator />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 80
+  wrapper: {
+    backgroundColor: "white",
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 10
+  },
+  exploreView: {
+    paddingTop: 80,
+    paddingBottom: 20
+  },
+  heading: {
+    fontSize: 22,
+    fontWeight: "600",
+    paddingBottom: 15
+  },
+  subHeading: {
+    fontSize: 18,
+    fontWeight: "600",
+    paddingBottom: 15,
+    paddingTop: 20
   }
 });
