@@ -1,10 +1,6 @@
 import { createTabNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-import ExploreContainer from "../containers/Explore";
-import HistoryContainer from "../containers/History";
-import ProfileContainer from "../containers/Profile";
-
 import FarmScreen from "../screens/explore/Farms";
 
 import listings from "../data/exploreListing";
@@ -32,11 +28,11 @@ const buildRouterConfig = function() {
     if (screen) {
       router[route.name] = {
         screen: screen,
-        backgroundColor: route.backgroundColor,
         navigationOptions: ({ navigation }) => ({
           backgroundImage: route.photo,
           backgroundColor: route.backgroundColor,
-          textColor: route.textColor
+          textColor: route.textColor,
+          listings: route.listings
         })
       };
     }

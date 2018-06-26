@@ -5,6 +5,12 @@ import AuthStack from "./src/navigators/Auth";
 import AuthLoading from "./src/screens/AuthLoading";
 
 import { createSwitchNavigator } from "react-navigation";
+import { YellowBox } from "react-native";
+
+YellowBox.ignoreWarnings([
+  "Warning: isMounted(...) is deprecated",
+  "Module RCTImageLoader"
+]);
 
 const AppNavigator = createSwitchNavigator(
   {

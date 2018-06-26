@@ -2,22 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { Card, ListItem } from "react-native-elements";
 
-import farms from "../../data/farms";
+import exploreListing from "../../data/exploreListing";
 
 export default class Farms extends Component {
+  get Farms() {
+    const routeName = this.props.navigation.state.routeName;
+    const currentRoute = exploreListing.find(route => route.name === routeName);
+    return currentRoute.listings || [];
+  }
+
   render() {
     return (
-      <View>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-        <Text>HEEEEELLLLOOO</Text>
-      </View>
+      <Card>
+        {this.Farms.map((farm, index) => {
+          return <ListItem title={farm.name} key={index} />;
+        })}
+      </Card>
     );
   }
 }
