@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   exploreView: {
-    paddingTop: 20,
-    paddingBottom: 20
+    paddingTop: 20
   },
   heading: {
     fontSize: 22,

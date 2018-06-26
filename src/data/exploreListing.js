@@ -6,7 +6,7 @@ const categories = [
     name: "Farms",
     screenType: "FarmScreen",
     backgroundColor: "#faf7d6",
-    textColor: colors.light,
+    textColor: colors.dark,
     photo: require("./photos/farm_small.jpg"),
     listings: [
       {
@@ -34,7 +34,7 @@ const categories = [
     name: "Fruit & Veg",
     backgroundColor: "#fabf1b",
     screenType: "FarmScreen",
-    textColor: "#fff",
+    textColor: colors.dark,
     photo: require("./photos/fruitAndVeg_small.jpg"),
     listings: [
       {
@@ -47,21 +47,24 @@ const categories = [
   },
   {
     id: 3,
-    name: "Animal by products",
+    name: "Animal",
     screenType: "FarmScreen",
     photo: require("./photos/eggs_small.jpg"),
     backgroundColor: "#fafaaa",
-    textColor: colors.light,
+    textColor: colors.dark,
     listings: [{ name: "eggs" }, { name: "honey" }]
   },
   {
     id: 4,
     name: "Cereals",
-    screenType: "FarmScreen"
+    screenType: "FarmScreen",
+    backgroundColor: "#faf7d6"
   },
   {
     id: 5,
-    name: "Flowers"
+    name: "Flowers",
+    screenType: "FarmScreen",
+    backgroundColor: "#faf7d6"
   }
 ];
 

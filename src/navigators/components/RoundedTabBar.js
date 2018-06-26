@@ -2,9 +2,12 @@ import React from "react";
 import { SafeAreaView, TabRouter } from "react-navigation";
 import {
   StyleSheet,
+  View,
   TouchableOpacity,
   Text,
-  ImageBackground
+  Image,
+  ImageBackground,
+  ScrollView
 } from "react-native";
 import colors from "../../styles/colors";
 
@@ -12,27 +15,39 @@ const CustomTabBar = ({ navigation, descriptors }) => {
   const { routes, index } = navigation.state;
   return (
     <SafeAreaView style={styles.tabContainer}>
-      {routes.map((route, index) => {
+      {routes.map((route, currentIndex) => {
         const descriptor = descriptors[route.key];
         const {
           backgroundColor,
           backgroundImage,
           textColor
         } = descriptor.options;
+
+        const routeIsActive = index === currentIndex;
+
         return (
           <TouchableOpacity
             onPress={() => navigation.navigate(route.routeName)}
             style={styles.tab}
             key={route.routeName}
           >
-            <ImageBackground
-              source={backgroundImage}
-              style={[styles.tabImage, { backgroundColor }]}
+            <View
+              style={
+                routeIsActive ? styles.activeImageWrapper : styles.imageWrapper
+              }
             >
-              <Text style={[{ color: textColor }, styles.tabText]}>
-                {route.routeName}
-              </Text>
-            </ImageBackground>
+              <ImageBackground
+                source={backgroundImage}
+                style={[
+                  styles.tabImage,
+                  currentIndex === index ? styles.activeTabImage : {},
+                  { backgroundColor: backgroundColor }
+                ]}
+              />
+            </View>
+            <Text style={[{ color: textColor }, styles.tabText]}>
+              {route.routeName}
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -46,11 +61,16 @@ const CustomTabView = ({ descriptors, navigation }) => {
   const ActiveScreen = descriptor.getComponent();
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
-      <CustomTabBar navigation={navigation} descriptors={descriptors} />
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <CustomTabBar navigation={navigation} descriptors={descriptors} />
+      </ScrollView>
       <ActiveScreen navigation={descriptor.navigation} />
     </SafeAreaView>
   );
 };
+
+const activeIconWidth = 70;
+const inactiveIconWidth = 60;
 
 const styles = StyleSheet.create({
   tabContainer: {
@@ -60,27 +80,35 @@ const styles = StyleSheet.create({
   tab: {
     alignItems: "center",
     justifyContent: "center",
-    margin: 4,
-    backgroundColor: colors.blue,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    width: 90,
-    height: 90,
-    borderRadius: 90,
-    overflow: "hidden"
+    height: 100,
+    marginRight: 20,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column"
+  },
+  activeImageWrapper: { borderRadius: activeIconWidth, overflow: "hidden" },
+  imageWrapper: {
+    overflow: "hidden",
+    borderRadius: inactiveIconWidth,
+    width: inactiveIconWidth
   },
   tabImage: {
-    flex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    width: inactiveIconWidth,
+    height: inactiveIconWidth,
     justifyContent: "center",
-    borderRadius: 90
+    borderRadius: inactiveIconWidth
+  },
+  activeTabImage: {
+    width: activeIconWidth,
+    height: activeIconWidth
   },
   tabText: {
     fontWeight: "600",
-    fontSize: 14,
-    textAlign: "center"
+    fontSize: 11,
+    textAlign: "center",
+    overflow: "hidden",
+    width: inactiveIconWidth,
+    paddingTop: 3
   }
 });
 
