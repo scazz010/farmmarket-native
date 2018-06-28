@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import colors from "../styles/colors";
@@ -17,7 +17,7 @@ export default class Explore extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
         <SearchBar
           lightTheme
           showLoading
@@ -25,14 +25,7 @@ export default class Explore extends Component {
           cancelIcon={{ type: "font-awesome", name: "chevron-left" }}
           placeholder="Search"
         />
-        <View style={styles.wrapper}>
-          <View style={styles.exploreView}>
-            <Text style={styles.heading}>Explore FarmMarket</Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <ExporeTabNavigator />
-          </View>
-        </View>
+        <ExporeTabNavigator />
       </View>
     );
   }
@@ -42,21 +35,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 10
-  },
-  exploreView: {
-    paddingTop: 20
-  },
-  heading: {
-    fontSize: 22,
-    fontWeight: "600",
-    paddingBottom: 15
-  },
-  subHeading: {
-    fontSize: 18,
-    fontWeight: "600",
-    paddingBottom: 15,
-    paddingTop: 20
+    marginBottom: 40
   }
 });

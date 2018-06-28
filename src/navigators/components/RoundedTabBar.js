@@ -60,11 +60,17 @@ const CustomTabView = ({ descriptors, navigation }) => {
   const descriptor = descriptors[routes[index].key];
   const ActiveScreen = descriptor.getComponent();
   return (
-    <SafeAreaView forceInset={{ top: "always" }}>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+    <SafeAreaView style={styles.viewContainer} forceInset={{ top: "always" }}>
+      <ScrollView
+        style={styles.tabScrollWrapper}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      >
         <CustomTabBar navigation={navigation} descriptors={descriptors} />
       </ScrollView>
-      <ActiveScreen navigation={descriptor.navigation} />
+      <ScrollView>
+        <ActiveScreen navigation={descriptor.navigation} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -73,9 +79,16 @@ const activeIconWidth = 70;
 const inactiveIconWidth = 60;
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1
+  },
   tabContainer: {
-    flexDirection: "row",
-    height: 100
+    flexDirection: "row"
+  },
+  tabScrollWrapper: {
+    height: 105,
+    maxHeight: 105,
+    flexShrink: 0
   },
   tab: {
     alignItems: "center",

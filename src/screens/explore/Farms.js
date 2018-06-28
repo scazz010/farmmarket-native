@@ -15,15 +15,21 @@ export default class Farms extends Component {
 
   render() {
     return (
-      <Card>
+      <View style={{ marginBottom: 10 }}>
         {this.Farms.map((farm, index) => {
-          return <ListItem title={farm.name} key={index} />;
+          return (
+            <Card key={index} title={farm.name} image={farm.photo}>
+              <Text>asdf</Text>
+              <Text>asdf</Text>
+              <Text>asdf</Text>
+              <Text>asdf</Text>
+              <Text>asdf</Text>
+              <Text>asdf</Text>
+              <Text>asdf2</Text>
+            </Card>
+          );
         })}
-      </Card>
+      </View>
     );
   }
 }
-
-// Farms.propTypes = {
-//   farms: PropTypes.array.isRequired
-// };

@@ -13,18 +13,21 @@ const categories = [
         id: 1,
         name: "Stoner Farm",
         description: "Allotment veg and apple orchard",
+        photo: require("./photos/farm_small.jpg"),
         starCount: 4.5
       },
       {
         id: 2,
         name: "Mannor Farm",
         description: "Milking parlour",
+        photo: require("./photos/farm_small.jpg"),
         starCount: 3
       },
       {
         id: 3,
         name: "Carr's Garden",
         description: "Garden veg",
+        photo: require("./photos/farm_small.jpg"),
         starCount: 1
       }
     ]
@@ -41,7 +44,10 @@ const categories = [
         name: "Broccoli"
       },
       {
-        name: "Potatoes"
+        name: "Cheese"
+      },
+      {
+        name: "Beans"
       }
     ]
   },
