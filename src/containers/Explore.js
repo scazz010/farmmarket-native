@@ -21,6 +21,7 @@ export default class Explore extends Component {
         <SearchBar
           lightTheme
           showLoading
+          iconTye="font-awesome"
           platform="android"
           cancelIcon={{ type: "font-awesome", name: "chevron-left" }}
           placeholder="Search"
